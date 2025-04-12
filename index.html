@@ -17,6 +17,7 @@
         top: 0;
         width: 100%;
         height: 100%;
+        z-index: 100;
       }
       body {
         background-color: #f8f9fa;
@@ -328,6 +329,26 @@
       </div>
       <button class="nav-btn next-btn">&#10095;</button>
     </div>
+    <button
+      id="kalpButon"
+      style="
+        margin-left: 20px;
+        padding: 8px 16px;
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        border: solid;
+        border-color: red;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 0;
+        transition: background-color 0.3s ease;
+      "
+      onmouseover="this.style.backgroundColor='white'"
+      onmouseout="this.style.backgroundColor='red'"
+    >
+      Kalp Yağmuru ❤️
+    </button>
     <footer
       style="text-align: center; font-size: 14px; color: #777; padding: 20px"
     >
@@ -345,7 +366,17 @@
         const nextBtn = document.querySelector(".next-btn");
 
         let currentIndex = 0;
+        const kalpButon = document.getElementById("kalpButon");
 
+        // Kalp butonuna tıklanınca
+        kalpButon.addEventListener("click", function () {
+          // Rastgele sayıda kalp oluştur
+          const kalpSayisi = Math.floor(Math.random() * 200) + 10; // 10-30 arası
+
+          for (let i = 0; i < kalpSayisi; i++) {
+            createHeartAnimation(); // Parametresiz çağırarak rastgele konumda kalpler oluştur
+          }
+        });
         // Resimlere tıklandığında modal açılıyor
         galleryItems.forEach((item, index) => {
           item.addEventListener("click", () => {
